@@ -1,0 +1,18 @@
+-- =============================================================
+--  modules/autostart.lua
+--  Processes and daemons launched on Hyprland start.
+--  Docs: https://wiki.hypr.land/Configuring/Basics/Autostart/
+-- =============================================================
+
+
+hl.on("hyprland.start", function()
+    hl.exec_cmd("awww-daemon &")
+    hl.exec_cmd("waybar &")
+
+end)
+
+-- hl.on("hyprland.start", function()
+--     local p = require("modules/programs")
+--     hl.exec_cmd(p.terminal)
+--     hl.exec_cmd("nm-applet")
+-- end)

@@ -1,0 +1,128 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 40,
+    "reload_style_on_change": true,
+
+    "modules-left": ["clock", "wireplumber"],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": ["cpu", "memory", "temperature", "custom/kitty", "custom/thunar", "bluetooth", "network", "battery", "custom/power"],
+   // "modules-right": ["custom/kitty", "custom/thunar", "bluetooth", "network", "battery", "custom/power"],
+
+    "hyprland/workspaces": {
+        "persistent-workspaces": {
+            "*": [1, 2, 3, 4]
+        },
+        "format": "{id}",
+        "on-click": "activate"
+    },
+
+    "custom/cava": {
+        "exec": "$HOME/.config/waybar/scripts/cava_waybar.sh",
+        "return-type": "json",
+        "restart-interval": 5,
+        "format": " {}",
+        "max-length": 30,
+        "on-click": "pavucontrol",
+        "on-scroll-up":   "pactl set-sink-volume @DEFAULT_SINK@ +2%",
+        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2%",
+        "tooltip": true
+    },
+
+    "clock": {
+        "format": "\uf017  {:%H:%M}",
+        "format-alt": "\uf073  {:%a %d %b}",
+        "interval": 1,
+        "tooltip": false
+    },
+
+	"wireplumber": {
+	    "format": "󰕾  {volume}%",
+	    "format-muted": "󰖁  muted",
+	    "tooltip": false,
+	    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+	    "scroll-step": 5
+	},
+
+
+//    "wireplumber": {
+//        "format": "\ufa7d  {volume}%",
+//        "format-muted": "\ufa80  muted",
+//        "tooltip": false,
+//        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+//        "scroll-step": 5
+//    },
+
+    "battery": {
+        "format": "{icon}  {capacity}%",
+        "format-charging": "\uf0e7  {capacity}%",
+        "format-plugged": "\uf1e6  {capacity}%",
+        "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"],
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "tooltip": false,
+        "interval": 30
+    },
+
+    "network": {
+        "format-wifi": "\uf1eb ",
+        "format-disconnected": "\uf127  off",
+        "format-ethernet": "\uf6ff  eth",
+        "on-click": "control --minimal --wifi",
+        "tooltip": false,
+        "max-length": 15
+    },
+
+    "bluetooth": {
+        "format-on": "\uf293",
+        "format-off": "\uf294",
+        "format-connected": "\uf293",
+        "on-click": "control --minimal --bluetooth",
+        "tooltip": false,
+        "max-length": 15
+    },
+
+    "custom/kitty": {
+        "format": "\uf489 ",
+        "on-click": "kitty",
+        "tooltip": false
+    },
+
+    "custom/thunar": {
+        "format": "\uf07b ",
+        "on-click": "thunar",
+        "tooltip": false
+    },
+
+    "custom/power": {
+        "format": "\uf011",
+        "on-click": "shutdown -h now",
+        "tooltip": false
+    },
+    
+    "cpu": {
+        "format": "󰻠 {usage}%",
+        "interval": 2,
+        "tooltip": true,
+        "tooltip-format": "Carga: {load}\nUso: {usage}%"
+    },
+    
+    "memory": {
+        "format": "󰍛 {used:0.1f}G",
+        "interval": 5,
+        "tooltip": true,
+        "tooltip-format": "Usada: {used:0.1f}G / {total:0.1f}G\nSwap: {swapUsed:0.1f}G"
+    },
+    
+    "temperature": {
+        "format": "󰔏 {temperatureC}°C",
+        "critical-threshold": 80,
+        "interval": 5,
+        "tooltip": false
+        // Si no detecta temperatura, descomentá y ajustá una de estas:
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        // "thermal-zone": 0
+    }
+}

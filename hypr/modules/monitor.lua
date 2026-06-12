@@ -1,0 +1,12 @@
+-- =============================================================
+--  modules/monitor.lua
+--  Monitor layout and scaling.
+--  Docs: https://wiki.hypr.land/Configuring/Basics/Monitors/
+-- =============================================================
+
+hl.monitor({
+    output   = "",
+    mode     = "preferred",
+    position = "auto",
+    scale    = "auto",
+})

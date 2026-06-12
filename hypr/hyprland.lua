@@ -1,0 +1,15 @@
+-- =============================================================
+--  hyprland.lua — Entry point
+--  Each section lives in its own module under ./modules/
+-- =============================================================
+
+require("modules/monitor")
+require("modules/environment")
+require("modules/autostart")
+require("modules/appearance")
+require("modules/animations")
+--require("animations/vertical")
+
+require("modules/input")
+require("modules/keybindings")
+require("modules/rules")

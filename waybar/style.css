@@ -1,0 +1,263 @@
+@import url('./colors.css');
+
+* {
+    font-size: 14px;
+    font-weight: bold;
+    font-family: "JetBrains Mono Nerd Font", "Symbols Nerd Font Mono", monospace;
+    color: @on-surface;
+    border: none;
+    border-radius: 0;
+}
+
+window#waybar {
+    all: unset;
+    background: transparent;
+}
+
+/* ── contenedores principales ── */
+.modules-left,
+.modules-center,
+.modules-right {
+    margin: 6px 16px 0;
+    padding: 0 2px;
+    background: @surface;
+    border-radius: 12px;
+    border: 1px solid @outline-variant;
+}
+
+/* ── módulos: base ── */
+#clock,
+#wireplumber,
+#custom-cava,
+#battery,
+#network,
+#bluetooth,
+#custom-kitty,
+#cpu,
+#memory,
+#temperature,
+#custom-thunar,
+#custom-power {
+    padding: 4px 10px;
+    margin: 4px 2px;
+    border-radius: 8px;
+    background: @surface-container;
+    color: @on-surface;
+    transition: all 0.2s ease;
+}
+
+/* ── módulos: hover ── */
+#cpu:hover,
+#memory:hover,
+#temperature:hover,
+#clock:hover,
+#wireplumber:hover,
+#battery:hover,
+#network:hover,
+#custom-cava:hover,
+#bluetooth:hover,
+#custom-kitty:hover,
+#custom-thunar:hover {
+    background: @surface-container-high;
+    color: @primary;
+}
+
+#custom-cava {
+    font-family: "JetBrains Mono", "Noto Sans Mono", monospace;
+    color: @secondary;
+    background: @secondary-container;
+}
+#custom-cava:hover {
+    background: @on-secondary-container;
+    color: @secondary-container;
+}
+
+/* ── clock ── */
+#clock {
+    color: @primary;
+    background: @primary-container;
+}
+#clock:hover {
+    background: @on-primary-container;
+    color: @primary-container;
+}
+
+/* ── wireplumber ── */
+#wireplumber {
+    color: @secondary;
+    background: @secondary-container;
+}
+#wireplumber.muted {
+    color: @on-surface-variant;
+    background: @surface-variant;
+}
+#wireplumber:hover {
+    background: @on-secondary-container;
+    color: @secondary-container;
+}
+
+/* ── battery ── */
+#battery {
+    color: @tertiary;
+    background: @tertiary-container;
+}
+#battery.charging,
+#battery.plugged {
+    color: @tertiary;
+    background: @tertiary-container;
+}
+#battery.warning:not(.charging) {
+    color: @error;
+    background: @surface-container;
+}
+#battery.critical:not(.charging) {
+    color: @on-error;
+    background: @error;
+    animation: blink 0.5s step-start infinite;
+}
+@keyframes blink {
+    50% { opacity: 0.6; }
+}
+
+/* ── network ── */
+#network {
+    color: @on-secondary-container;
+    background: @secondary-container;
+}
+#network.disconnected {
+    color: @on-surface-variant;
+    background: @surface-variant;
+}
+
+/* ── bluetooth ── */
+#bluetooth {
+    color: @on-secondary-container;
+    background: @secondary-container;
+}
+
+/* ── launchers ── */
+#custom-kitty,
+#custom-thunar {
+    color: @on-primary-container;
+    background: @primary-container;
+    font-size: 16px;
+    padding: 4px 12px;
+    margin: 4px 2px;
+    min-width: 16px;
+}
+
+/* ── power ── */
+#custom-power {
+    color: @on-error;
+    background: @error;
+    font-size: 16px;
+    padding: 4px 12px;
+    margin: 4px 4px 4px 2px;
+    min-width: 16px;
+}
+#custom-power:hover {
+    background: @on-surface;
+    color: @surface;
+}
+
+/* ── workspaces ── */
+#workspaces {
+    padding: 0 1px;
+}
+#workspaces button {
+    all: unset;
+    margin: 4px 3px;
+    padding: 0 8px;
+    min-width: 16px;
+    border-radius: 8px;
+    background: @surface-container;
+    color: @on-surface-variant;
+    font-size: 12px;
+    transition: all 0.2s ease;
+}
+#workspaces button:hover {
+    background: @surface-container-high;
+    color: @on-surface;
+}
+#workspaces button.active {
+    background: @primary;
+    color: @on-primary;
+    min-width: 28px;
+    border-radius: 10px;
+}
+#workspaces button.urgent {
+    background: @error;
+    color: @on-error;
+}
+
+/* ── tooltip ── */
+tooltip {
+    background: @surface-container-high;
+    color: @on-surface;
+    border: 1px solid @outline-variant;
+    border-radius: 8px;
+}
+
+
+/* ── cava: estados dinámicos ────────────────────────────────
+   Agregar debajo de tu bloque #custom-cava existente.
+   Los colores siguen la misma lógica que wireplumber.muted
+   ─────────────────────────────────────────────────────────── */
+
+/* Audio activo — refuerza los colores base ya definidos */
+#custom-cava.active {
+    color: @secondary;
+    background: @secondary-container;
+}
+
+/* Silencio — igual que wireplumber.muted */
+#custom-cava.muted {
+    color: @on-surface-variant;
+    background: @surface-variant;
+    opacity: 0.55;
+}
+
+/* Error (cava no instalado o sin config) */
+#custom-cava.error {
+    color: @on-error;
+    background: @error;
+}
+
+
+/* ── cpu / memory / temperature ─────────────────────────────────── */
+/* Agregar debajo del bloque de módulos base en style.css            */
+
+/* 1. Sumar a la lista de módulos base (padding, margin, etc.)       */
+/*    #clock, #wireplumber, ..., #cpu, #memory, #temperature { }     */
+
+#cpu {
+    color: @tertiary;
+    background: @tertiary-container;
+}
+#cpu:hover {
+    background: @on-tertiary-container;
+    color: @tertiary-container;
+}
+
+#memory {
+    color: @tertiary;
+    background: @tertiary-container;
+}
+#memory:hover {
+    background: @on-tertiary-container;
+    color: @tertiary-container;
+}
+
+#temperature {
+    color: @tertiary;
+    background: @tertiary-container;
+}
+#temperature:hover {
+    background: @on-tertiary-container;
+    color: @tertiary-container;
+}
+#temperature.critical {
+    color: @on-error;
+    background: @error;
+    animation: blink 0.5s step-start infinite;
+}

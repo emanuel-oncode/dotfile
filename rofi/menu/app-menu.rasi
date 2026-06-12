@@ -1,0 +1,131 @@
+/* ---- Configuración General ---- */
+configuration {
+    modi: "drun,run";
+    show-icons: true;
+    icon-theme: "Papirus-Dark"; /* Cambia esto por tu tema de iconos */
+    font: "JetBrainsMono Nerd Font 10";
+    drun-display-format: "{icon} {name}";
+    display-drun: " ";
+    display-run: " ";
+}
+
+/* ---- Importar tus colores ---- */
+@import "../colors.rasi"
+
+/* ---- Ventana Principal ---- */
+window {
+    transparency: "real";
+    location: center;
+    anchor: center;
+    fullscreen: false;
+    width: 450px;
+    
+    enabled: true;
+    border-radius: 12px;
+    border: 2px solid;
+    border-color: @outline-variant; /* Borde sutil, si prefieres que destaque usa @primary */
+    background-color: @surface;
+    cursor: "default";
+}
+
+/* ---- Contenedor Interno ---- */
+mainbox {
+    enabled: true;
+    spacing: 0px;
+    margin: 0px;
+    padding: 20px;
+    background-color: transparent;
+    children: [ "inputbar", "listview" ];
+}
+
+/* ---- Barra de Búsqueda ---- */
+inputbar {
+    enabled: true;
+    spacing: 10px;
+    margin: 0px 0px 20px 0px;
+    padding: 12px 15px;
+    border-radius: 8px;
+    background-color: @surface-container-highest;
+    text-color: @on-surface;
+    children: [ "prompt", "entry" ];
+}
+
+prompt {
+    enabled: true;
+    background-color: transparent;
+    text-color: @primary;
+    font: "JetBrainsMono Nerd Font 12";
+}
+
+entry {
+    enabled: true;
+    background-color: transparent;
+    text-color: @on-surface;
+    cursor: text;
+    placeholder: "Buscar...";
+    placeholder-color: @outline;
+    vertical-align: 0.5;
+}
+
+/* ---- Lista de Aplicaciones ---- */
+listview {
+    enabled: true;
+    columns: 1;
+    lines: 6;
+    cycle: true;
+    dynamic: true;
+    scrollbar: false;
+    layout: vertical;
+    reverse: false;
+    fixed-height: true;
+    fixed-columns: true;
+    
+    spacing: 5px;
+    background-color: transparent;
+    text-color: @on-surface;
+    cursor: "default";
+}
+
+/* ---- Elementos Individuales ---- */
+element {
+    enabled: true;
+    spacing: 12px;
+    margin: 0px;
+    padding: 10px 15px;
+    border: 0px;
+    border-radius: 8px;
+    background-color: transparent;
+    text-color: @on-surface;
+    cursor: pointer;
+}
+
+element normal.normal {
+    background-color: transparent;
+    text-color: @on-surface;
+}
+
+element alternate.normal {
+    background-color: transparent;
+    text-color: @on-surface;
+}
+
+/* ---- Estado Seleccionado (El toque visual) ---- */
+element selected.normal {
+    background-color: @primary;
+    text-color: @on-primary;
+}
+
+element-icon {
+    background-color: transparent;
+    text-color: inherit;
+    size: 24px;
+    cursor: inherit;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+    highlight: inherit;
+    cursor: inherit;
+    vertical-align: 0.5;
+}
